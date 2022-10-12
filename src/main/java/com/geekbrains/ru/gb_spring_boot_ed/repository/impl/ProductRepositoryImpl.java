@@ -13,10 +13,10 @@ import java.util.Optional;
 public class ProductRepositoryImpl implements ProductRepository {
 
     private List<Product> products;
-    private Long curProductNum;
+    private Long curProductNum = 0L;
 
     @PostConstruct
-    private void init(){
+    void init(){
         products = new ArrayList<>();
         for (int i =1; i<=10; i++){
             curProductNum++;

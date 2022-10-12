@@ -3,10 +3,11 @@ package com.geekbrains.ru.gb_spring_boot_ed.service.impl;
 import com.geekbrains.ru.gb_spring_boot_ed.domain.Product;
 import com.geekbrains.ru.gb_spring_boot_ed.repository.ProductRepository;
 import com.geekbrains.ru.gb_spring_boot_ed.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
