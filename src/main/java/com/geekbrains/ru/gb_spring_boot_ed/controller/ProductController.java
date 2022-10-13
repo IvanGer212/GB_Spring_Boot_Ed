@@ -48,7 +48,7 @@ public class ProductController {
     }
 
 
-    private Optional<ErrorResponse> validationNewProduct(Product newProduct){
+    private Optional<ErrorResponse> validationNewProduct (Product newProduct){
         List<String> details = new ArrayList<>();
         if (newProduct.getTitle().isEmpty()){
             details.add("Product name could not be empty!");

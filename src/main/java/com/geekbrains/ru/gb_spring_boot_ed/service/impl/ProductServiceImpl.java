@@ -3,10 +3,11 @@ package com.geekbrains.ru.gb_spring_boot_ed.service.impl;
 import com.geekbrains.ru.gb_spring_boot_ed.domain.Product;
 import com.geekbrains.ru.gb_spring_boot_ed.repository.ProductRepository;
 import com.geekbrains.ru.gb_spring_boot_ed.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -18,16 +19,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProduct() {
-        return productRepository.getAllProduct();
+        return productRepository.findAll();
     }
 
     @Override
     public Optional<Product> findProductById(Long id) {
-        return productRepository.findProductById(id);
+        return productRepository.findById(id);
     }
 
     @Override
     public Product addNewProduct(Product product) {
-        return productRepository.addNewProduct(product);
+        return productRepository.save(product);
     }
 }
