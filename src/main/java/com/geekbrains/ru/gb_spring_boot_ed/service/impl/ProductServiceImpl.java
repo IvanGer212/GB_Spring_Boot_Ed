@@ -36,4 +36,19 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProductById(Long id){
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<Product> findAllByCostIsLessThan(int cost) {
+        return productRepository.findAllByCostIsLessThan(cost);
+    }
+
+    @Override
+    public List<Product> findAllByCostGreaterThan(int cost) {
+        return productRepository.findAllByCostGreaterThan(cost);
+    }
+
+    @Override
+    public List<Product> findAllByCostBetween(int min, int max) {
+        return productRepository.findAllByCostBetween(min, max);
+    }
 }
