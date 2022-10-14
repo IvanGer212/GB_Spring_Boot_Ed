@@ -2,8 +2,11 @@ package com.geekbrains.ru.gb_spring_boot_ed.controller;
 
 import com.geekbrains.ru.gb_spring_boot_ed.domain.Product;
 import com.geekbrains.ru.gb_spring_boot_ed.exception.ErrorResponse;
+import com.geekbrains.ru.gb_spring_boot_ed.exception.ResourceNotFoundException;
 import com.geekbrains.ru.gb_spring_boot_ed.service.ProductService;
 import lombok.AllArgsConstructor;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -27,7 +30,7 @@ public class ProductController {
     @GetMapping("/{id}")
     @ResponseBody
     public Product getProductById(@PathVariable Long id){
-        return productService.findProductById(id).get();
+        return productService.findProductById(id).orElseThrow(()-> new ResourceNotFoundException("Product not found! id= "+id));
     }
 
     @GetMapping("/create-product")
@@ -36,6 +39,19 @@ public class ProductController {
 
         return "create-product";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        Optional<Product> productById = productService.findProductById(id);
+        if (productById.isPresent()){
+        productService.deleteProductById(id);
+        return "redirect:/product";}
+        else {
+            throw new ResourceNotFoundException("Product could not be delete. Product not found. id=" + id);
+        }
+    }
+
+
     @PostMapping
     public String addProduct(@ModelAttribute("newProduct") Product newProduct, Model model) {
         Optional<ErrorResponse> validationError = validationNewProduct(newProduct);
