@@ -1,5 +1,6 @@
 package com.geekbrains.ru.gb_spring_boot_ed.controller;
 
+import com.geekbrains.ru.gb_spring_boot_ed.domain.Limits;
 import com.geekbrains.ru.gb_spring_boot_ed.domain.Product;
 import com.geekbrains.ru.gb_spring_boot_ed.exception.ErrorResponse;
 import com.geekbrains.ru.gb_spring_boot_ed.exception.ResourceNotFoundException;
@@ -24,6 +25,7 @@ public class ProductController {
     public String getProducts(Model model){
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products",products);
+        model.addAttribute("Limits", new Limits());
         return "products";
     }
 
@@ -45,6 +47,7 @@ public class ProductController {
     public String getProductBetweenCost(@RequestParam (defaultValue = "0") int min, @RequestParam(defaultValue = "1000000") int max, Model model){
         List<Product> allByCostBetween = productService.findAllByCostBetween(min, max);
         model.addAttribute("products", allByCostBetween);
+        model.addAttribute("Limits", new Limits());
         return "products";
     }
 
