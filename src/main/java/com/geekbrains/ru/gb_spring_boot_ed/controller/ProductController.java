@@ -29,19 +29,6 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/product-less")
-    public String getProductLess (@RequestParam (defaultValue = "1000000000")int cost, Model model){
-        List<Product> allByCostIsLessThan = productService.findAllByCostIsLessThan(cost);
-        model.addAttribute("products", allByCostIsLessThan);
-        return "products";
-    }
-
-    @GetMapping("/product-greater")
-    public String getProductGreater(@RequestParam (defaultValue = "0") int cost, Model model){
-        List<Product> allByCostGreaterThan = productService.findAllByCostGreaterThan(cost);
-        model.addAttribute("products", allByCostGreaterThan);
-        return "products";
-    }
 
     @GetMapping("/product-between")
     public String getProductBetweenCost(@RequestParam (defaultValue = "0") int min, @RequestParam(defaultValue = "1000000") int max, Model model){

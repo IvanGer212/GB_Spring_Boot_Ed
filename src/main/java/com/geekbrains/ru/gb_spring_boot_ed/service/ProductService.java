@@ -14,9 +14,5 @@ public interface ProductService {
 
     void deleteProductById(Long id);
 
-    List<Product> findAllByCostIsLessThan (int cost);
-
-    List<Product> findAllByCostGreaterThan (int cost);
-
     List<Product> findAllByCostBetween(int min, int max );
 }

@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Limits {
-    private int min=0;
-    private int max=1000000;
+    private Integer min;
+    private Integer max;
 }

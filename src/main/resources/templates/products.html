@@ -39,13 +39,15 @@
             <form action="#" th:action="@{/product/create-product}" method="get">
                 <p><input type="submit" style="background-color: dodgerblue" value="Добавить продукт" /></p>
             </form>
-                <form action="#" th:action="@{/product/product-between(min=${'Limits.min'},max=${'Limits.max'})}" th:object="${Limits}" method="get">
-                    <p>min: <input type="number" th:field="${Limits.min}" /></p>
-                    <p>max: <input type="number" th:field="${Limits.max}" /></p>
-                    <p><input type="submit" value="Фильтровать" /></p>
-                </form>
+
         </div>
         <div class="col">
+            <h5>Фильтр по стоимости</h5>
+            <form action="#" th:action="@{/product/product-between(min=${'Limits.min'},max=${'Limits.max'})}" th:object="${Limits}" method="get">
+                <p>min: <input type="text" th:field="${Limits.min}" /></p>
+                <p>max: <input type="text" th:field="${Limits.max}" /></p>
+                <p><input type="submit" value="Фильтровать" /></p>
+            </form>
         </div>
     </div>
 </div>

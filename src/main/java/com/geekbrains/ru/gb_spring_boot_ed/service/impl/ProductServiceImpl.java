@@ -29,22 +29,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addNewProduct(Product product) {
-        return productRepository.save(product);
+        Optional<Product> firstByTitle = productRepository.findFirstByTitle(product.getTitle());
+        if (firstByTitle.isPresent()) {
+            Product product1 = firstByTitle.get();
+            product1.setTitle(product.getTitle());
+            product1.setCost(product.getCost());
+            return productRepository.save(product1);
+        } else {
+            return productRepository.save(product);
+        }
     }
 
     @Override
     public void deleteProductById(Long id){
         productRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Product> findAllByCostIsLessThan(int cost) {
-        return productRepository.findAllByCostIsLessThan(cost);
-    }
-
-    @Override
-    public List<Product> findAllByCostGreaterThan(int cost) {
-        return productRepository.findAllByCostGreaterThan(cost);
     }
 
     @Override
